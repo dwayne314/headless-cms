@@ -1,0 +1,9 @@
+## Build
+docker-compose.*.yml
+.env
+
+## testing
+*/coverage
+
+# dependencies
+*/node_modules

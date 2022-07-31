@@ -1,0 +1,3 @@
+{
+  "collectCoverageFrom": ["api/**/*.{js,jsx}", "!api/routes/*"]
+}
