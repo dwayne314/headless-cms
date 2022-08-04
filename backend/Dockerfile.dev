@@ -1,0 +1,25 @@
+FROM node:lts-alpine as builder
+
+WORKDIR /usr/src/app/
+
+# Install app dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --silent --frozen-lockfile
+
+# copy the remaining app files
+COPY . .
+
+FROM node:lts-alpine
+
+# copy the app from the builder
+WORKDIR /usr/src/app/
+COPY --from=builder /usr/src/app/ ./
+
+# Expose the backend port
+EXPOSE 3000
+
+RUN chown -R node /usr/src/app
+USER node
+
+# Run the start script
+CMD ["yarn", "start"]

@@ -5,7 +5,7 @@ const app = express();
 const { PORT = 3000 } = process.env;
 
 import homeRouter from "./api/routes/home.js";
-app.use("/", homeRouter);
+app.use("/api", homeRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

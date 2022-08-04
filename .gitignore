@@ -1,9 +1,12 @@
 ## Build
-docker-compose.*.yml
+docker-compose*.yml
 .env
 
-## testing
+## Testing
 */coverage
 
-# dependencies
+# Dependencies
 */node_modules
+
+## Environment
+.vscode

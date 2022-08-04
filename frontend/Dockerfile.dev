@@ -1,0 +1,22 @@
+FROM node:lts-alpine as builder
+
+WORKDIR /app/
+
+# Install app dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --silent --frozen-lockfile
+
+# copy the remaining app files
+COPY . .
+
+FROM node:lts-alpine
+
+# copy the app from the builder
+WORKDIR /app/
+COPY --from=builder /app/ ./
+
+# Expose the frontend port
+EXPOSE 5000
+
+# Run the start script
+CMD ["yarn", "start"]
