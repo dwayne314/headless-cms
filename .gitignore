@@ -10,3 +10,4 @@ docker-compose*.yml
 
 ## Environment
 .vscode
+/mongo-data
