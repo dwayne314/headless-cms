@@ -35,8 +35,8 @@ describe("Auth Controller", () => {
     const noAuthError = null;
     const noLoginError = null;
     const mockUser = {
-      first_name: "Gerald",
-      last_name: "Johnson",
+      firstName: "Gerald",
+      lastName: "Johnson",
       email: "gj@gmail.com",
     };
 
@@ -69,7 +69,7 @@ describe("Auth Controller", () => {
 
       expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({
-        auth: "Invalid username or password",
+        auth: "Invalid email or password",
       });
     });
     it("returns a 500 error and the auth error if the login failed", () => {
@@ -120,7 +120,7 @@ describe("Auth Controller", () => {
     const emptyValidationError = {};
     const authValidationError = { auth: "Invalid Body" };
     const successfulValidation = true;
-    const successfulValidationResult = { first_name: "Gerald" };
+    const successfulValidationResult = { firstName: "Gerald" };
 
     function mockCreateUsers(validationResult, withError) {
       return jest.spyOn(Users, "create").mockImplementation(() => {

@@ -4,18 +4,18 @@ import Users from "../models/users";
 async function validateRegistration(request) {
   const errors = {};
   const {
-    first_name = "",
-    last_name = "",
+    firstName = "",
+    lastName = "",
     email = "",
     password = "",
   } = request.body;
 
-  if (!first_name) {
-    errors.first_name = "First name must not be empty";
+  if (!firstName) {
+    errors.firstName = "First name must not be empty";
   }
 
-  if (!last_name) {
-    errors.last_name = "Last name must not be empty";
+  if (!lastName) {
+    errors.lastName = "Last name must not be empty";
   }
 
   if (!email) {
@@ -38,14 +38,13 @@ async function validateRegistration(request) {
   }
 
   const isValid = Object.keys(errors).length === 0;
-
   return {
     isValid: isValid,
     errors,
     result: isValid
       ? {
-          first_name,
-          last_name,
+          firstName,
+          lastName,
           email,
           password,
         }

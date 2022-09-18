@@ -20,7 +20,7 @@ const authController = {
     passport.authenticate("local", (err, user, info) => {
       if (err) return next(err);
       if (!user)
-        return res.status(401).json({ auth: "Invalid username or password" });
+        return res.status(401).json({ auth: "Invalid email or password" });
       req.login(user, (err) => {
         if (err) res.status(500).json({ auth: "User could not be logged in" });
         return res.status(200).json(user);

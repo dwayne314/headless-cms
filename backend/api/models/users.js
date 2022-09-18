@@ -3,12 +3,12 @@ import { hashPassword } from "../utils";
 
 export const UserSchema = new mongoose.Schema(
   {
-    first_name: {
+    firstName: {
       type: String,
       required: true,
       trim: true,
     },
-    last_name: {
+    lastName: {
       type: String,
       required: true,
       trim: true,
