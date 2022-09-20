@@ -28,9 +28,14 @@ const authController = {
     })(req, res, next);
   },
   logout: (req, res, next) => {
-    req.logOut();
-    req.session.destroy();
-    return res.status(200).json({ auth: "User logged out" });
+    req.logOut((err) => {
+      if (err) {
+        return res.status(500).json({ auth: err });
+      } else {
+        req.session.destroy();
+        return res.status(200).json({ auth: "User logged out" });
+      }
+    });
   },
 };
 

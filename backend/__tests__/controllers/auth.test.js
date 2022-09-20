@@ -7,10 +7,12 @@ describe("Auth Controller", () => {
   const mockNext = jest.fn();
   let req, res;
 
-  const mockRequest = (sessionData) => {
+  const mockRequest = (sessionData, logoutError) => {
     return {
       session: { data: sessionData, destroy: jest.fn() },
-      logOut: jest.fn(),
+      logOut: jest.fn((cb) => {
+        cb(logoutError);
+      }),
       login: jest.fn(),
     };
   };
@@ -109,10 +111,28 @@ describe("Auth Controller", () => {
       authController.logout(req, res, mockNext);
       expect(req.logOut).toHaveBeenCalledTimes(1);
     });
-    it("destroys the users session", () => {
-      authController.logout(req, res, mockNext);
+    it("returns a 500 error and the auth error if the logout fails", () => {
+      const logoutError = "Error logging out user";
+      const mockReqWithError = mockRequest(undefined, logoutError);
+      authController.logout(mockReqWithError, res, mockNext);
 
-      expect(req.session.destroy).toHaveBeenCalledTimes(1);
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ auth: logoutError });
+    });
+    it("destroys the users session if no error is thrown", () => {
+      const logoutError = undefined;
+      const mockReqWithoutError = mockRequest(undefined, logoutError);
+      authController.logout(mockReqWithoutError, res, mockNext);
+
+      expect(mockReqWithoutError.session.destroy).toHaveBeenCalledTimes(1);
+    });
+    it("returns a 200 error and success message if the logout was successful", () => {
+      const logoutError = undefined;
+      const mockReqWithoutError = mockRequest(undefined, logoutError);
+      authController.logout(mockReqWithoutError, res, mockNext);
+
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ auth: "User logged out" });
     });
   });
 
