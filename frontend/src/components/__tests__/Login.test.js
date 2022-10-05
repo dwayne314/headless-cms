@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import * as Router from "react-router";
 import { MemoryRouter } from "react-router-dom";
-import Login from "../../../components/Login";
-import { AuthContext } from "../../../hooks/useAuth";
+import Login from "../Login";
+import { AuthContext } from "../../hooks/useAuth";
 
 describe("Login", () => {
   const email = "test-email";

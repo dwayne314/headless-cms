@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import * as Router from "react-router";
 import { MemoryRouter } from "react-router-dom";
-import Register from "../../../components/Register";
-import { AuthContext } from "../../../hooks/useAuth";
+import Register from "../Register";
+import { AuthContext } from "../../hooks/useAuth";
 
 describe("Register", () => {
   const registerMock = jest.fn();

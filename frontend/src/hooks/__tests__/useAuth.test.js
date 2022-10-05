@@ -1,6 +1,6 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import axios from "axios";
-import useAuth, { AuthProvider } from "../../../hooks/useAuth";
+import useAuth, { AuthProvider } from "../useAuth";
 
 describe("Auth Provider", () => {
   const userDetails = { email: "test-email", password: "test-pass" };

@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
     try {
       await axios.post("/api/auth/login", userDetails);
       loginStatus = { isValid: true };
-      setUser(userDetails);
+      setUser({ ...userDetails });
     } catch (err) {
       loginStatus = { isValid: false, errors: err.response.data };
     }

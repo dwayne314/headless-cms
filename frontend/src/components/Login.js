@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Form, { createFormInputs } from "./Form";
 
@@ -49,7 +49,11 @@ function Login() {
 
   return (
     <div data-testid="login">
+      <div>Login</div>
       <Form formInputs={loginFormInputs} onSubmit={loginUser} />
+      <span>
+        <Link to={"/register"}>Click to register</Link>
+      </span>
     </div>
   );
 }
